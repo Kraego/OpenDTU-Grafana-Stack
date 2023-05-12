@@ -1,0 +1,75 @@
+version: "3.9"
+
+services:
+  influxdb:
+    image: influxdb:2.7-alpine
+    container_name: influxdb
+    environment:
+     - DOCKER_INFLUXDB_INIT_MODE=setup
+     - DOCKER_INFLUXDB_INIT_USERNAME=${GRAFANA_USER_NAME}
+     - DOCKER_INFLUXDB_INIT_PASSWORD=${GRAFANA_USER_PASSWORD}
+     - DOCKER_INFLUXDB_INIT_ORG=${GRAFANA_ORG_NAME}
+     - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUX_BUCKET}
+    volumes:
+      - ./influxdb/data:/var/lib/influxdb2
+      - ./influxdb/config:/etc/influxdb2
+      - ./influxdb/setup:/setup
+    ports:
+       - 8086:8086
+    restart: unless-stopped
+    networks:
+      - mtig_network
+ 
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto/config/password.txt:/mosquitto/conf/password.txt
+      - ./mosquitto/log:/mosquitto/log
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/certs:/mosquitto/certs
+    restart: unless-stopped
+    environment:
+      MQTT_USER: ${MQTT_USER}
+      MQTT_PW: ${MQTT_PW}
+    ports:
+      - 1883:1883
+      - 8883:8883
+    networks:
+      - mtig_network
+ 
+  telegraf:
+    image: telegraf:1.26-alpine
+    container_name: telegraf
+    environment:
+      MQTT_USER: ${MQTT_USER}
+      MQTT_PW: ${MQTT_PW}
+      GRAFANA_ORG_NAME: ${GRAFANA_ORG_NAME}
+      INFLUX_BUCKET: ${INFLUX_BUCKET}
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+    restart: unless-stopped
+    depends_on:
+      mosquitto:
+        condition: service_started
+    networks:
+      - mtig_network
+ 
+  grafana:
+    image: grafana/grafana:9.5.2
+    container_name: grafana
+    ports:
+      - 3000:3000
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PW}
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+    restart: unless-stopped
+    networks:
+      - mtig_network
+  
+networks:
+  mtig_network:
+    driver: bridge

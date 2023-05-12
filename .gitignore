@@ -1,0 +1,12 @@
+# data directories
+influxdb/data
+grafana/data
+mosquitto/data
+
+# config stuff
+influxdb/config
+mosquitto/cert
+
+# logs
+mosquitto/log
+.env

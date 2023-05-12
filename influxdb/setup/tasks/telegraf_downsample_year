@@ -1,0 +1,6 @@
+option task = {name: "telegraf_downsample_year", every: 6h}
+
+from(bucket: "telegraf/day")
+    |> range(start: -task.every)
+    |> aggregateWindow(every: 6h, fn: mean)
+    |> to(org: "$DOCKER_INFLUXDB_INIT_ORG", bucket: "telegraf/year")
