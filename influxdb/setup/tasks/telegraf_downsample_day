@@ -3,4 +3,4 @@ option task = {name: "telegraf_downsample_day", every: 1m}
 from(bucket: "telegraf/actual")
     |> range(start: -task.every)
     |> aggregateWindow(every: 1m, fn: mean)
-    |> to(org: $DOCKER_INFLUXDB_INIT_ORG, bucket: "telegraf/day")
+    |> to(org: "$DOCKER_INFLUXDB_INIT_ORG", bucket: "telegraf/day")
