@@ -17,5 +17,5 @@ else
     influx task create -org $DOCKER_INFLUXDB_INIT_ORG -f /setup/tasks/telegraf_downsample_month
     influx task create -org $DOCKER_INFLUXDB_INIT_ORG -f /setup/tasks/telegraf_downsample_year
 
-    touch /setup/SETUPDONE
+    touch $SETUPDONE_FILE
 fi
