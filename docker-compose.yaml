@@ -47,6 +47,7 @@ services:
       MQTT_PW: ${MQTT_PW}
       GRAFANA_ORG_NAME: ${GRAFANA_ORG_NAME}
       INFLUX_BUCKET: ${INFLUX_BUCKET}
+      INFLUX_TOKEN: ${INFLUX_TOKEN}
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
     restart: unless-stopped

@@ -14,8 +14,8 @@ It consists of:
 
 * The following ports must be open on host (so if you have a firewall unblock these ports)
   * `3000` for grafana (webinterface)
-  * `8883` for mqtt broker (to receive publishes from openDTU)
-* if you want **skip the tls cert stuff** comment line 6-8 in the `mosquitto.conf`
+  * `8883` or `1883` for mqtt broker (to receive publishes from openDTU)
+* if you want **the tls cert stuff** uncomment line 6-8 in the `mosquitto.conf`
 * **Install `Certbot` on your Host**
   * update `[YOUR DOMAIN]` and `[DIR MOUNT OF MOSQUITTO CONTAINER ON HOST]` (./mosquitto/certs) in `mosquitto-copy-certs.sh`
   * copy the file `mosquitto-copy-certs.sh` to your certbot renewal hooks dir (on Linux it is: /etc/letsencrypt/renewal-hooks/deploy) and make it executable (`chmod +x mosquitto-copy-certs.sh`)
@@ -32,7 +32,9 @@ It consists of:
    * configure the variables with your values 
 3. Setup the **mosquitto user** with same values as in your `.env` file (replace `mqtt_user` and `mqtt_pw` with your values used in `.env`)
    ```
+   docker-compose up mosquitto -d
    docker-compose exec mosquitto mosquitto_passwd -b /mosquitto/conf/password.txt mqtt_user mqtt_pw
+   docker-compose down
    ```
    * Configure your open DTU to this broker
 4. Create influx buckets and downsample tasks
@@ -41,18 +43,27 @@ It consists of:
    docker-compose exec influxdb /bin/sh -c '/setup/setupInflux.sh' 
    docker-compose down
    ```
-5. Start up the whole stack
+5. Get the token
+   ```
+   docker-compose up influxdb -d
+   docker-compose exec influxdb influx auth list
+   docker-compose down
+   ```
+6. Insert token to `.env`
+   INFLUX_TOKEN=...
+7. Start up the whole stack
    ```
    docker-compose up -d
    ```
-6. Setup grafana over: http://localhost:3000
+8. Setup grafana over: http://localhost:3000
    * add Datasource
-     * url: http://influxdb:8086
-     * organization the same as in your `.env` File
-     * Basic Auth: User and password again from your `.env` File
+     * Query Language: Flux
+     * URL: http://influxdb:8086
+     * Basic auth: User and password again from your `.env` File
+     * Organization: the same as in your `.env` File
      * Get the token: `docker-compose exec influxdb influx auth list`
        * copy the token to the textbox
-7. Add or create Dashboards
+9. Add or create Dashboards
 
 **YOUR DONE**
 
@@ -65,4 +76,3 @@ Things I didn't did but would be nice:
 * Nicer setup of mqtt user
 * ....
   
-
