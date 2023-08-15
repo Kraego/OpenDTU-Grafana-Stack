@@ -72,10 +72,8 @@ It consists of:
 If you have SELinux installed and running, add `:Z` to all `volumes` entries in `docker-compose.yaml`, e.g.
 
 ```
-...
   volumes:
     - ./influxdb/data:/var/lib/influxdb2:Z
-...
 ```
 
 ## Improvements
