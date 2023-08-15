@@ -42,6 +42,7 @@ services:
   telegraf:
     image: telegraf:1.26-alpine
     container_name: telegraf
+    user: telegraf
     environment:
       MQTT_USER: ${MQTT_USER}
       MQTT_PW: ${MQTT_PW}
