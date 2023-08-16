@@ -26,44 +26,24 @@ It consists of:
     ```
     git clone https://github.com/Kraego/OpenDTU-Mosquitto-Telegraf-Influx-Grafana-Stack.git
     ```
-1. Go to directory where you have cloned the repo
-2. Create a `.env` file from the template
+2. Go to directory where you have cloned the repo
+3. Create a `.env` file from the template
    * rename `.env_template` to `.env`
    * configure the variables with your values 
-3. Setup the **mosquitto user** with same values as in your `.env` file (replace `mqtt_user` and `mqtt_pw` with your values used in `.env`)
-   ```
-   docker-compose up mosquitto -d
-   docker-compose exec mosquitto mosquitto_passwd -b /mosquitto/conf/password.txt mqtt_user mqtt_pw
-   docker-compose down
-   ```
-   * Configure your open DTU to this broker
-4. Create influx buckets and downsample tasks
-   ```
-   docker-compose up influxdb -d
-   docker-compose exec influxdb /bin/sh -c '/setup/setupInflux.sh' 
-   docker-compose down
-   ```
-5. Get the token
-   ```
-   docker-compose up influxdb -d
-   docker-compose exec influxdb influx auth list
-   docker-compose down
-   ```
-6. Insert token to `.env`
-   INFLUX_TOKEN=...
-7. Start up the whole stack
+4. run the init script: `./init.sh`
+5. Start up the whole stack
    ```
    docker-compose up -d
    ```
-8. Setup grafana over: http://localhost:3000
+6. Setup grafana over: http://localhost:3000
    * add Datasource
      * Query Language: Flux
      * URL: http://influxdb:8086
-     * Basic auth: User and password again from your `.env` File
-     * Organization: the same as in your `.env` File
-     * Get the token: `docker-compose exec influxdb influx auth list`
+     * Basic auth: User and password again from your `.env` file
+     * Organization: the same as in your `.env` file
+     * Get the token from your `.env` file
        * copy the token to the textbox
-9. Add or create Dashboards
+7. Add or create Dashboards
 
 **YOUR DONE**
 
@@ -80,8 +60,6 @@ If you have SELinux installed and running, add `:Z` to all `volumes` entries in 
 
 Things I didn't did but would be nice:
 
-* Run influx setup automatically when done with init
 * Run certbot internal as service (how to pass the let's encrypt challenge?)
-* Nicer setup of mqtt user
 * ....
   
