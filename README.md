@@ -1,7 +1,5 @@
 # Mosquitto-Telegraf-Influx-Grafana Stack
 
-This is WIP.
-
 This is a docker stack created to visualize the topics of a opendDTU (https://github.com/tbnobody/OpenDTU). Mqtt communication with basic auth an let's encrypt certificates. Basically it is the dockerized version of https://github.com/Kraego/OpenDTU-Grafana-Howto.
 
 It consists of:
