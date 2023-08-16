@@ -30,13 +30,12 @@ It consists of:
 3. Create a `.env` file from the template
    * rename `.env_template` to `.env`
    * configure the variables with your values 
-4. make init executable `chmod +x init.sh`
-5. run the init script: `./init.sh`
-6. Start up the whole stack
+4. run the init script: `./init.sh`
+5. Start up the whole stack
    ```
    docker-compose up -d
    ```
-7. Setup grafana over: http://localhost:3000
+6. Setup grafana over: http://localhost:3000
    * add Datasource
      * Query Language: Flux
      * URL: http://influxdb:8086
@@ -44,7 +43,7 @@ It consists of:
      * Organization: the same as in your `.env` file
      * Get the token from your `.env` file
        * copy the token to the textbox
-8. Add or create Dashboards
+7. Add or create Dashboards
 
 **YOUR DONE**
 
