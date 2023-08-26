@@ -1,6 +1,6 @@
 # Mosquitto-Telegraf-Influx-Grafana Stack
 
-This is a docker stack created to visualize the topics of a opendDTU (https://github.com/tbnobody/OpenDTU). Mqtt communication with basic auth an let's encrypt certificates. Basically it is the dockerized version of https://github.com/Kraego/OpenDTU-Grafana-Howto.
+This is a docker stack created to visualize the topics of a **opendDTU** (https://github.com/tbnobody/OpenDTU). Mqtt communication with basic auth an let's encrypt certificates. Basically it is the dockerized version of https://github.com/Kraego/OpenDTU-Grafana-Howto. When used with something different adapt the telegraf mapping to your scenario.
 
 It consists of:
   * `mosquitto` (mqtt broker)
@@ -33,15 +33,8 @@ It consists of:
    ```
    docker-compose up -d
    ```
-6. Setup grafana over: http://localhost:3000
-   * add Datasource
-     * Query Language: Flux
-     * URL: http://influxdb:8086
-     * Basic auth: User and password again from your `.env` file
-     * Organization: the same as in your `.env` file
-     * Get the token from your `.env` file
-       * copy the token to the textbox
-7. Add or create Dashboards
+6. Open grafana: http://localhost:3000
+   * Add or create Dashboards
 
 **YOUR DONE**
 

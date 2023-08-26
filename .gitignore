@@ -4,6 +4,7 @@ grafana/data
 mosquitto/data
 
 # config stuff
+influxdb/setup/DONE
 influxdb/config
 mosquitto/cert
 
