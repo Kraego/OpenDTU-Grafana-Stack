@@ -31,7 +31,7 @@ It consists of:
    docker-compose up -d
    ```
 6. Open grafana: http://localhost:3000
-   * Add or create Dashboards
+   * Add or create Dashboards (for opendtu see: https://github.com/Kraego/OpenDTU-Grafana-Howto)
 
 **YOUR DONE**
 
