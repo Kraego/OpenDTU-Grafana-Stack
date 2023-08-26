@@ -1,5 +1,7 @@
 # Mosquitto-Telegraf-Influx-Grafana Stack
 
+[![License](https://img.shields.io/badge/License-MIT-blue)](#license "Go to license section")
+
 This is a docker stack created to visualize the topics of a **opendDTU** (https://github.com/tbnobody/OpenDTU). The data from openDTU is transferred over mqtt with basic auth an let's encrypt certificates. Basically it is the dockerized version of https://github.com/Kraego/OpenDTU-Grafana-Howto. When used with something different adapt the telegraf mapping to your scenario.
 
 It consists of:
