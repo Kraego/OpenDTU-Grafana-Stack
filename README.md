@@ -51,12 +51,3 @@ If you have SELinux installed and running, add `:Z` to all `volumes` entries in 
 * **Install `Certbot` on your Host**
   * update `[YOUR DOMAIN]` and `[DIR MOUNT OF MOSQUITTO CONTAINER ON HOST]` (./mosquitto/certs) in `mosquitto-copy-certs.sh`
   * copy the file `mosquitto-copy-certs.sh` to your certbot renewal hooks dir (on Linux it is: /etc/letsencrypt/renewal-hooks/deploy) and make it executable (`chmod +x mosquitto-copy-certs.sh`)
-
-## Improvements
-
-Things missing that would be nice:
-
-* Run certbot internal as service (how to pass the let's encrypt challenge? nginx?)
-* ....
-
-  
