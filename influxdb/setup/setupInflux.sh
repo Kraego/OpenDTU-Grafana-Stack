@@ -9,7 +9,7 @@ else
     influx bucket create -o $DOCKER_INFLUXDB_INIT_ORG -n telegraf/day --retention 1d --shard-group-duration 1h
     influx bucket create -o $DOCKER_INFLUXDB_INIT_ORG  -n telegraf/week --retention 7d --shard-group-duration 1d
     influx bucket create -o $DOCKER_INFLUXDB_INIT_ORG  -n telegraf/month --retention 31d --shard-group-duration 1d
-    influx bucket create -o $DOCKER_INFLUXDB_INIT_ORG  -n telegraf/year --retention 366d --shard-group-duration 7d
+    influx bucket create -o $DOCKER_INFLUXDB_INIT_ORG  -n telegraf/year --retention 1830d --shard-group-duration 7d
 
     # add downsampling tasks
     influx task create -org $DOCKER_INFLUXDB_INIT_ORG -f /setup/tasks/telegraf_downsample_day
