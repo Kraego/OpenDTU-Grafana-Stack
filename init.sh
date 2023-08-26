@@ -9,6 +9,9 @@ set -o allexport
 source "$ENV_FILE"
 set +o allexport
 
+echo "##### Pulling images"
+docker-compose pull
+
 echo "##### Configuring mosquitto user - $MQTT_USER"
 #remove carriage return
 mqttuser=$(echo "$MQTT_USER" | tr -d '\r')
