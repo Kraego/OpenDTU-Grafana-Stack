@@ -21,7 +21,7 @@ services:
       - mtig_network
  
   mosquitto:
-    image: eclipse-mosquitto:2
+      image: eclipse-mosquitto:2
     container_name: mosquitto
     volumes:
       - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
