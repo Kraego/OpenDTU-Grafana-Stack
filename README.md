@@ -1,6 +1,6 @@
 # Mosquitto-Telegraf-Influx-Grafana Stack
 
-This is a docker stack created to visualize the topics of a **opendDTU** (https://github.com/tbnobody/OpenDTU). Mqtt communication with basic auth an let's encrypt certificates. Basically it is the dockerized version of https://github.com/Kraego/OpenDTU-Grafana-Howto. When used with something different adapt the telegraf mapping to your scenario.
+This is a docker stack created to visualize the topics of a **opendDTU** (https://github.com/tbnobody/OpenDTU). The data from openDTU is transferred over mqtt with basic auth an let's encrypt certificates. Basically it is the dockerized version of https://github.com/Kraego/OpenDTU-Grafana-Howto. When used with something different adapt the telegraf mapping to your scenario.
 
 It consists of:
   * `mosquitto` (mqtt broker)
@@ -13,14 +13,11 @@ It consists of:
 * The following ports must be open on host (so if you have a firewall unblock these ports)
   * `3000` for grafana (webinterface)
   * `8883` or `1883` for mqtt broker (to receive publishes from openDTU)
-* if you want **the tls cert stuff** uncomment line 6-8 in the `mosquitto.conf`
-* **Install `Certbot` on your Host**
-  * update `[YOUR DOMAIN]` and `[DIR MOUNT OF MOSQUITTO CONTAINER ON HOST]` (./mosquitto/certs) in `mosquitto-copy-certs.sh`
-  * copy the file `mosquitto-copy-certs.sh` to your certbot renewal hooks dir (on Linux it is: /etc/letsencrypt/renewal-hooks/deploy) and make it executable (`chmod +x mosquitto-copy-certs.sh`)
+* if you want **the tls cert stuff** uncomment line 6-8 in the `mosquitto.conf` ([see this guide how to install certbot on host OS](#Lets-encrypt-certs))
 
 ## How to use it
 
-1. Clone Repo
+1. Clone the repo
     ```
     git clone https://github.com/Kraego/OpenDTU-Mosquitto-Telegraf-Influx-Grafana-Stack.git
     ```
@@ -28,7 +25,7 @@ It consists of:
 3. Create a `.env` file from the template
    * rename `.env_template` to `.env`
    * configure the variables with your values 
-4. run the init script: `./init.sh`
+4. Run the init script: `./init.sh`
 5. Start up the whole stack
    ```
    docker-compose up -d
@@ -47,10 +44,16 @@ If you have SELinux installed and running, add `:Z` to all `volumes` entries in 
     - ./influxdb/data:/var/lib/influxdb2:Z
 ```
 
+## Lets encrypt certs
+* **Install `Certbot` on your Host**
+  * update `[YOUR DOMAIN]` and `[DIR MOUNT OF MOSQUITTO CONTAINER ON HOST]` (./mosquitto/certs) in `mosquitto-copy-certs.sh`
+  * copy the file `mosquitto-copy-certs.sh` to your certbot renewal hooks dir (on Linux it is: /etc/letsencrypt/renewal-hooks/deploy) and make it executable (`chmod +x mosquitto-copy-certs.sh`)
+
 ## Improvements
 
-Things I didn't did but would be nice:
+Things missing that would be nice:
 
-* Run certbot internal as service (how to pass the let's encrypt challenge?)
+* Run certbot internal as service (how to pass the let's encrypt challenge? nginx?)
 * ....
+
   
