@@ -27,7 +27,7 @@ It consists of:
 2. Go to directory where you have cloned the repo
 3. Create a `.env` file from the template
    * rename `.env_template` to `.env`
-   * configure the variables with your values 
+   * configure the variables with your values, INFLUX_TOKEN will be set automatic during init
 4. Run the init script: `./init.sh`
 5. Start up the whole stack
    ```
