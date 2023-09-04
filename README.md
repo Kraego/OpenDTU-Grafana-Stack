@@ -34,6 +34,7 @@ It consists of:
    docker-compose up -d
    ```
 6. Open grafana: http://localhost:3000
+   * Use the credentials configured in the .env file
    * Add or create Dashboards (for opendtu see: https://github.com/Kraego/OpenDTU-Grafana-Howto)
 
 **YOUR DONE**
