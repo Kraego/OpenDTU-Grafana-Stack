@@ -4,8 +4,14 @@ INFLUX_START_DELAY=3
 
 # check for mac os and create sed alias
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    shopt -s expand_aliases
-    alias sed=gsed
+    if ! command -v gsed &> /dev/null 
+    then
+        echo "##### gsed missing for mac os, install it with brew 'brew install gsed' ... exiting"
+        exit
+    else
+        shopt -s expand_aliases
+        alias sed=gsed
+    fi
 fi
 
 # Load env file
