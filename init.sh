@@ -2,6 +2,12 @@
 
 INFLUX_START_DELAY=3
 
+# check for mac os and create sed alias
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    shopt -s expand_aliases
+    alias sed=gsed
+fi
+
 # Load env file
 ENV_FILE=.env
 echo "##### Load settings from $ENV_FILE"
