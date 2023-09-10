@@ -6,7 +6,7 @@ INFLUX_START_DELAY=3
 if [[ "$OSTYPE" == "darwin"* ]]; then
     if ! command -v gsed &> /dev/null 
     then
-        echo "##### gsed missing for mac os, install it with brew 'brew install gsed' ... exiting"
+        echo "##### gsed missing for mac os, install it with f.e. with brew 'brew install gsed' ... exiting"
         exit
     else
         shopt -s expand_aliases
