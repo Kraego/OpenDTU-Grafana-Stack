@@ -16,6 +16,7 @@ It consists of:
 * The following ports must be open on host (so if you have a firewall unblock these ports)
   * `3000` for grafana (webinterface)
   * `8883` or `1883` for mqtt broker (to receive publishes from openDTU)
+* on mac os install gsed for example with brew
 * if you want **the tls cert stuff** uncomment line 6-8 in the `mosquitto.conf` ([see this guide how to install certbot on host OS](#Lets-encrypt-certs))
 
 ## How to use it
