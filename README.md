@@ -23,18 +23,24 @@ It consists of:
 
 1. Clone the repo
     ```
-    git clone https://github.com/Kraego/OpenDTU-Mosquitto-Telegraf-Influx-Grafana-Stack.git
+    git clone https://github.com/Kraego/OpenDTU-Grafana-Stack.git   
     ```
 2. Go to directory where you have cloned the repo
-3. Create a `.env` file from the template
+    ```
+    cd OpenDTU-Grafana-Stack
+    ```
+4. Create a `.env` file from the template
    * rename `.env_template` to `.env`
    * configure the variables with your values, INFLUX_TOKEN will be set automatic during init
-4. Run the init script: `./init.sh`
-5. Start up the whole stack
+5. Run the init script:
+    ```
+     ./init.sh
+    ```
+7. Start up the whole stack
    ```
    docker-compose up -d
    ```
-6. Open grafana: http://localhost:3000
+8. Open grafana: http://localhost:3000
    * Use the credentials configured in the .env file
    * Add or create Dashboards (for opendtu see: https://github.com/Kraego/OpenDTU-Grafana-Howto)
 
