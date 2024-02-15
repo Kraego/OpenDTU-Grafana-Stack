@@ -6,9 +6,9 @@ if [ -f "$SETUPDONE_FILE" ]; then
     echo 'Setup of Influx db already done'
 else
     # Setup influx db buckets
-    influx bucket create -o $DOCKER_INFLUXDB_INIT_ORG -n telegraf/day --retention 1d --shard-group-duration 1h
-    influx bucket create -o $DOCKER_INFLUXDB_INIT_ORG  -n telegraf/week --retention 7d --shard-group-duration 1d
-    influx bucket create -o $DOCKER_INFLUXDB_INIT_ORG  -n telegraf/month --retention 31d --shard-group-duration 1d
+    influx bucket create -o $DOCKER_INFLUXDB_INIT_ORG -n telegraf/day --retention 7d --shard-group-duration 1h
+    influx bucket create -o $DOCKER_INFLUXDB_INIT_ORG  -n telegraf/week --retention 30d --shard-group-duration 1d
+    influx bucket create -o $DOCKER_INFLUXDB_INIT_ORG  -n telegraf/month --retention 90d --shard-group-duration 1d
     influx bucket create -o $DOCKER_INFLUXDB_INIT_ORG  -n telegraf/year --retention 1830d --shard-group-duration 7d
 
     # add downsampling tasks
