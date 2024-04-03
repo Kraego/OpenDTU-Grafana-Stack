@@ -68,6 +68,7 @@ services:
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PW}
     volumes:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/var/lib:/var/lib/grafana
     restart: unless-stopped
     networks:
       - mtig_network
