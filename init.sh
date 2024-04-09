@@ -30,7 +30,7 @@ mqttuser=$(echo "$MQTT_USER" | tr -d '\r')
 mqttpw=$(echo "$MQTT_PW" | tr -d '\r')
 
 docker-compose up mosquitto -d
-docker-compose exec mosquitto mosquitto_passwd -b /mosquitto/conf/password.txt $mqttuser $mqttpw
+docker-compose exec mosquitto mosquitto_passwd -b ./mosquitto/config/password.txt $mqttuser $mqttpw
 docker-compose down
 
 echo "##### Creating influx buckets and downsample tasks"
