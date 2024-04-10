@@ -12,6 +12,6 @@ datasources:
       tlsSkipVerify: true
       httpHeaderName1: 'Authorization'
     secureJsonData:
-      httpHeaderValue1: [TOKEN]
-      token: [TOKEN]
+      httpHeaderValue1: 'token [TOKEN]'
+      token: '[TOKEN]'
 
