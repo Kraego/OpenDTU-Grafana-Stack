@@ -7,10 +7,11 @@ datasources:
     url: http://influxdb:8086
     jsonData:
       version: Flux
-      organization: grafana_org_name
+      organization: [ORGANIZATION]
       defaultBucket: telegraf
       tlsSkipVerify: true
       httpHeaderName1: 'Authorization'
     secureJsonData:
-      httpHeaderValue1: TOKEN_VALUE
+      httpHeaderValue1: [TOKEN_VALUE]
+      token: [TOKEN_VALUE]
 

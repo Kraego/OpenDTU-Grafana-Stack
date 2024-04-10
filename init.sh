@@ -54,7 +54,7 @@ echo "##### Setting token in environment"
 sed -i '/^INFLUX_TOKEN=/s/=.*/='"$auth_token"'/' .env
 
 echo "##### Updating grafana datasource with new values from env"
-sed -i 's,TOKEN_VALUE, '"token $auth_token"', g' ./grafana/provisioning/datasources/default.yaml
+sed -i 's,\[TOKEN\], '"token $auth_token"', g' ./grafana/provisioning/datasources/default.yaml
 sed -i 's,\[ORGANIZATION\],'$GRAFANA_ORG_NAME', g' ./grafana/provisioning/datasources/default.yaml
 
 echo $"##### Done, You now can start the stack with 'docker-compose up -d'"
