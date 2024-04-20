@@ -10,6 +10,8 @@ datasources:
       organization: [ORGANIZATION]
       defaultBucket: telegraf
       tlsSkipVerify: true
+      httpHeaderName1: 'Authorization'
     secureJsonData:
-      token: [TOKEN]
+      httpHeaderValue1: 'token [TOKEN]'
+      token: '[TOKEN]'
 
